@@ -1,29 +1,29 @@
-import java.util.*;
-import java.io.*;
-import java.math.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
-/**
- * The while loop represents the game.
- * Each iteration represents a turn of the game
- * where you are given inputs (the heights of the mountains)
- * and where you have to print an output (the index of the mountain to fire on)
- * The inputs you are given are automatically updated according to your last actions.
- **/
 class Player {
 
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
 
-        // game loop
         while (true) {
+            List<Integer> inputValues = new ArrayList<>();
             for (int i = 0; i < 8; i++) {
-                int mountainH = in.nextInt(); // represents the height of one mountain.
+                inputValues.add(in.nextInt());
             }
 
-            // Write an action using System.out.println()
-            // To debug: System.err.println("Debug messages...");
-
-            System.out.println("4"); // The index of the mountain to fire on.
+            System.out.println(new Chooser().findHighestMountain(inputValues));
         }
+    }
+}
+
+class Chooser {
+    public String findHighestMountain(List<Integer> mountains){
+        return IntStream.range(0, mountains.size())
+                .boxed().max(Comparator.comparing(mountains::get))
+                .orElse(-1).toString();
     }
 }
