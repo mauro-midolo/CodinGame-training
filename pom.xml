@@ -14,5 +14,6 @@
 
     <modules>
         <module>the-descent</module>
+        <module>power-of-thor-episode-1</module>
     </modules>
 </project>
